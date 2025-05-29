@@ -26,12 +26,33 @@ public class TitleManager : MonoBehaviour
 
     private void Start()
     {
+        //유저 데이터 로드
+        UserDataManager.Instance.LoadUserData();
+
+        //저장된 유저 데이터가 없으면 기본값으로 세팅 후 저장
+        if (!UserDataManager.Instance.ExistsSavedData)
+        {
+            UserDataManager.Instance.SetDefaultUserData(); // 기본 데이터 설정
+            UserDataManager.Instance.SaveUserData(); // 기본 데이터 저장
+        }
+
+        //ChapterData chapterData1 = DataTableManager.Instance.GetChapterData(10);
+        //ChapterData chapterData2 = DataTableManager.Instance.GetChapterData(50);
+
         StartCoroutine(LoadGameCo());
     }
 
     private IEnumerator LoadGameCo()
     {
         Logger.Log($"{GetType()}::LoadGameCo");
+
+        //AudioManager.Instance.PlayBGM(BGM.lobby);
+        //yield return new WaitForSeconds(5f);
+        //AudioManager.Instance.PauseBGM();
+        //yield return new WaitForSeconds(5f);
+        //AudioManager.Instance.ResumeBGM();
+        //yield return new WaitForSeconds(5f);
+        //AudioManager.Instance.StopBGM();
 
         LogoAnim.Play();
         yield return new WaitForSeconds(LogoAnim.clip.length);
