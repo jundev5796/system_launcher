@@ -38,4 +38,7 @@ public class SceneLoader : SingletonBehaviour<SceneLoader>
 
         return SceneManager.LoadSceneAsync(sceneType.ToString());
     }
+
+
+
 }
