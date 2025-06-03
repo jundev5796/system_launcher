@@ -71,4 +71,12 @@ public class LobbyUIController : MonoBehaviour
         // 설정 UI 열기
         UIManager.Instance.OpenUI<SettingsUI>(uiData);
     }
+
+    public void OnClickProfileBtn()
+    {
+        Logger.Log($"{GetType()}::OnClickProfileBtn");
+
+        var uiData = new BaseUIData();
+        UIManager.Instance.OpenUI<InventoryUI>(uiData);
+    }
 }
