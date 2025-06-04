@@ -21,6 +21,19 @@ public enum InventorySortType
 // 인벤토리 UI 클래스 - BaseUI를 상속받음
 public class InventoryUI : BaseUI
 {
+    // 무기 슬롯 컴포넌트 참조
+    public EquippedItemSlot WeaponSlot;
+    // 방패 슬롯 컴포넌트 참조
+    public EquippedItemSlot ShieldSlot;
+    // 가슴 방어구 슬롯 컴포넌트 참조
+    public EquippedItemSlot ChestArmorSlot;
+    // 부츠 슬롯 컴포넌트 참조
+    public EquippedItemSlot BootsSlot;
+    // 장갑 슬롯 컴포넌트 참조
+    public EquippedItemSlot GlovesSlot;
+    // 액세서리 슬롯 컴포넌트 참조
+    public EquippedItemSlot AccessorySlot;
+
     // 인벤토리 스크롤 리스트 컴포넌트 참조
     public InfiniteScroll InventoryScrollList;
     // 정렬 버튼의 텍스트 컴포넌트 참조
@@ -35,10 +48,99 @@ public class InventoryUI : BaseUI
         // 부모 클래스의 SetInfo 메서드 호출
         base.SetInfo(uiData);
 
+        // 장착된 아이템들 설정
+        SetEquippedItems();
         // 인벤토리 데이터 설정
         SetInventory();
         // 인벤토리 정렬 실행
         SortInventory();
+    }
+
+    // 장착된 아이템들을 설정하는 메서드
+    private void SetEquippedItems()
+    {
+        // 사용자 인벤토리 데이터 가져오기
+        var userInventoryData = UserDataManager.Instance.GetUserData<UserInventoryData>();
+        // 사용자 인벤토리 데이터가 없는 경우 에러 처리
+        if (userInventoryData == null)
+        {
+            // 에러 로그 출력
+            Logger.LogError("UserInventoryData does not exist.");
+            // 메서드 종료
+            return;
+        }
+
+        // 장착된 무기 데이터가 있는 경우
+        if (userInventoryData.EquippedWeaponData != null)
+        {
+            // 무기 슬롯에 아이템 설정
+            WeaponSlot.SetItem(userInventoryData.EquippedWeaponData);
+        }
+        else
+        {
+            // 무기 슬롯 초기화
+            WeaponSlot.ClearItem();
+        }
+
+        // 장착된 방패 데이터가 있는 경우
+        if (userInventoryData.EquippedShieldData != null)
+        {
+            // 방패 슬롯에 아이템 설정
+            ShieldSlot.SetItem(userInventoryData.EquippedShieldData);
+        }
+        else
+        {
+            // 방패 슬롯 초기화
+            ShieldSlot.ClearItem();
+        }
+
+        // 장착된 가슴 방어구 데이터가 있는 경우
+        if (userInventoryData.EquippedChestArmorData != null)
+        {
+            // 가슴 방어구 슬롯에 아이템 설정
+            ChestArmorSlot.SetItem(userInventoryData.EquippedChestArmorData);
+        }
+        else
+        {
+            // 가슴 방어구 슬롯 초기화
+            ChestArmorSlot.ClearItem();
+        }
+
+        // 장착된 부츠 데이터가 있는 경우
+        if (userInventoryData.EquippedBootsData != null)
+        {
+            // 부츠 슬롯에 아이템 설정
+            BootsSlot.SetItem(userInventoryData.EquippedBootsData);
+        }
+        else
+        {
+            // 부츠 슬롯 초기화
+            BootsSlot.ClearItem();
+        }
+
+        // 장착된 장갑 데이터가 있는 경우
+        if (userInventoryData.EquippedGlovesData != null)
+        {
+            // 장갑 슬롯에 아이템 설정
+            GlovesSlot.SetItem(userInventoryData.EquippedGlovesData);
+        }
+        else
+        {
+            // 장갑 슬롯 초기화
+            GlovesSlot.ClearItem();
+        }
+
+        // 장착된 액세서리 데이터가 있는 경우
+        if (userInventoryData.EquippedAccessoryData != null)
+        {
+            // 액세서리 슬롯에 아이템 설정
+            AccessorySlot.SetItem(userInventoryData.EquippedAccessoryData);
+        }
+        else
+        {
+            // 액세서리 슬롯 초기화
+            AccessorySlot.ClearItem();
+        }
     }
 
     // 인벤토리 데이터를 설정하는 메서드

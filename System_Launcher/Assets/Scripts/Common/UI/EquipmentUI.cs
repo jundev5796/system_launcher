@@ -14,6 +14,7 @@ public class EquipmentUIData : BaseUIData
     public long SerialNumber;
     // 아이템 ID
     public int ItemId;
+    public bool IsEquipped;
 }
 
 // 장비 UI 클래스 - BaseUI를 상속받음

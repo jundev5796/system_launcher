@@ -255,7 +255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6858490645208113402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6283479651663846243}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1421343927859654089
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +279,7 @@ GameObject:
   - component: {fileID: 1421343927859654090}
   - component: {fileID: 1421343927859654068}
   - component: {fileID: 1421343927859654091}
+  - component: {fileID: 7385151036793763099}
   m_Layer: 5
   m_Name: GlovesSlot
   m_TagString: Untagged
@@ -333,6 +346,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7385151036793763099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421343927859654089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 6885175925592234734}
+  EquippedItemIcon: {fileID: 2502287575054590858}
 --- !u!1 &1421343928062110577
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +371,7 @@ GameObject:
   - component: {fileID: 1421343928062110578}
   - component: {fileID: 1421343928062110588}
   - component: {fileID: 1421343928062110579}
+  - component: {fileID: 4748615066463748299}
   m_Layer: 5
   m_Name: ChestArmorSlot
   m_TagString: Untagged
@@ -410,6 +438,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4748615066463748299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421343928062110577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 1421343928953410862}
+  EquippedItemIcon: {fileID: 5043303624361332344}
 --- !u!1 &1421343928185518953
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +613,7 @@ GameObject:
   - component: {fileID: 1421343928660105914}
   - component: {fileID: 1421343928660105892}
   - component: {fileID: 1421343928660105915}
+  - component: {fileID: 6283479651663846243}
   m_Layer: 5
   m_Name: ShieldSlot
   m_TagString: Untagged
@@ -637,6 +680,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6283479651663846243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421343928660105913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 1421343928185518955}
+  EquippedItemIcon: {fileID: 6858490645208113402}
 --- !u!1 &1421343928953410860
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +780,7 @@ GameObject:
   - component: {fileID: 1421343929263608597}
   - component: {fileID: 1421343929263608599}
   - component: {fileID: 1421343929263608598}
+  - component: {fileID: 3415763934983989055}
   m_Layer: 5
   m_Name: BootsSlot
   m_TagString: Untagged
@@ -789,6 +847,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3415763934983989055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421343929263608596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 2446669339634365040}
+  EquippedItemIcon: {fileID: 6709788132705275187}
 --- !u!1 &1421343929311168571
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +872,7 @@ GameObject:
   - component: {fileID: 1421343929311168548}
   - component: {fileID: 1421343929311168550}
   - component: {fileID: 1421343929311168549}
+  - component: {fileID: 355052825348089630}
   m_Layer: 5
   m_Name: AccessorySlot
   m_TagString: Untagged
@@ -866,6 +939,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &355052825348089630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421343929311168571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 1421343928486353800}
+  EquippedItemIcon: {fileID: 4411716927146598678}
 --- !u!1 &1421343929432549860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2485,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4411716927146598678}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 355052825348089630}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6561577019888739191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2518,7 +2617,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5043303624361332344}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4748615066463748299}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6774903622216990072
 GameObject:
   m_ObjectHideFlags: 0
@@ -2790,7 +2901,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6709788132705275187}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3415763934983989055}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6885175923782754108
 GameObject:
   m_ObjectHideFlags: 0
@@ -3521,7 +3644,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6885175924661873380}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7192509468734196886}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6885175925019933096
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,6 +3823,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UIOpenAnim: {fileID: 0}
+  WeaponSlot: {fileID: 7192509468734196886}
+  ShieldSlot: {fileID: 6283479651663846243}
+  ChestArmorSlot: {fileID: 4748615066463748299}
+  BootsSlot: {fileID: 3415763934983989055}
+  GlovesSlot: {fileID: 7385151036793763099}
+  AccessorySlot: {fileID: 355052825348089630}
   InventoryScrollList: {fileID: 4297591513047932391}
   SortBtnTxt: {fileID: 7206056449295334989}
 --- !u!1 &6885175925510113217
@@ -3701,6 +3842,7 @@ GameObject:
   - component: {fileID: 6885175925510113216}
   - component: {fileID: 6885175925510113218}
   - component: {fileID: 6885175925510113219}
+  - component: {fileID: 7192509468734196886}
   m_Layer: 5
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -3767,6 +3909,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7192509468734196886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885175925510113217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f91c683e2e42c46adea5a42395bd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AddIcon: {fileID: 8261674720839452555}
+  EquippedItemIcon: {fileID: 6885175924661873380}
 --- !u!1 &6885175925592234732
 GameObject:
   m_ObjectHideFlags: 0
@@ -4439,7 +4595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2502287575054590858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7385151036793763099}
+        m_TargetAssemblyTypeName: EquippedItemSlot, Assembly-CSharp
+        m_MethodName: OnClickEquippedItemSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8521320979798731799
 GameObject:
   m_ObjectHideFlags: 0
