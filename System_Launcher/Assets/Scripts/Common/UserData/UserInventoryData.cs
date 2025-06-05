@@ -207,7 +207,6 @@ public class UserInventoryData : IUserData
             {
                 Logger.Log($"SerialNumber:{item.SerialNumber} ItemId:{item.ItemId}");
             }
-            PlayerPrefs.Save();
 
             result = true;
         }
@@ -279,5 +278,116 @@ public class UserInventoryData : IUserData
     public bool IsEquipped(long serialNumber)
     {
         return EquippedItemDic.ContainsKey(serialNumber);
+    }
+
+    public void EquipItem(long serialNumber, int itemId)
+    {
+        var itemData = DataTableManager.Instance.GetItemData(itemId);
+        if (itemData == null)
+        {
+            Logger.LogError($"Item data does not exist. ItemId:{itemId}");
+            return;
+        }
+
+        var itemType = (ItemType)(itemId / 10000);
+        switch (itemType)
+        {
+            case ItemType.Weapon:
+                if (EquippedWeaponData != null)
+                {
+                    EquippedItemDic.Remove(EquippedWeaponData.SerialNumber);
+                    EquippedWeaponData = null;
+                }
+                EquippedWeaponData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Shield:
+                if (EquippedShieldData != null)
+                {
+                    EquippedItemDic.Remove(EquippedShieldData.SerialNumber);
+                    EquippedShieldData = null;
+                }
+                EquippedShieldData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.ChestArmor:
+                if (EquippedChestArmorData != null)
+                {
+                    EquippedItemDic.Remove(EquippedChestArmorData.SerialNumber);
+                    EquippedChestArmorData = null;
+                }
+                EquippedChestArmorData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Gloves:
+                if (EquippedGlovesData != null)
+                {
+                    EquippedItemDic.Remove(EquippedGlovesData.SerialNumber);
+                    EquippedGlovesData = null;
+                }
+                EquippedGlovesData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Boots:
+                if (EquippedBootsData != null)
+                {
+                    EquippedItemDic.Remove(EquippedBootsData.SerialNumber);
+                    EquippedBootsData = null;
+                }
+                EquippedBootsData = new UserItemData(serialNumber, itemId);
+                break;
+            case ItemType.Accessory:
+                if (EquippedAccessoryData != null)
+                {
+                    EquippedItemDic.Remove(EquippedAccessoryData.SerialNumber);
+                    EquippedAccessoryData = null;
+                }
+                EquippedAccessoryData = new UserItemData(serialNumber, itemId);
+                break;
+            default:
+                break;
+        }
+
+        EquippedItemDic.Add(serialNumber, new UserItemStats(itemData.AttackPower, itemData.Defense));
+    }
+
+    public void UnequipItem(long serialNumber, int itemId)
+    {
+        var itemType = (ItemType)(itemId / 10000);
+        switch (itemType)
+        {
+            case ItemType.Weapon:
+                EquippedWeaponData = null;
+                break;
+            case ItemType.Shield:
+                EquippedShieldData = null;
+                break;
+            case ItemType.ChestArmor:
+                EquippedChestArmorData = null;
+                break;
+            case ItemType.Gloves:
+                EquippedGlovesData = null;
+                break;
+            case ItemType.Boots:
+                EquippedBootsData = null;
+                break;
+            case ItemType.Accessory:
+                EquippedAccessoryData = null;
+                break;
+            default:
+                break;
+        }
+
+        EquippedItemDic.Remove(serialNumber);
+    }
+
+    public UserItemStats GetUserTotalItemStats()
+    {
+        var totalAttackPower = 0;
+        var totalDefense = 0;
+
+        foreach (var item in EquippedItemDic)
+        {
+            totalAttackPower += item.Value.AttackPower;
+            totalDefense += item.Value.Defense;
+        }
+
+        return new UserItemStats(totalAttackPower, totalDefense);
     }
 }

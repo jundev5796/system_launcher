@@ -4140,6 +4140,8 @@ MonoBehaviour:
   AccessorySlot: {fileID: 355052825348089630}
   InventoryScrollList: {fileID: 4297591513047932391}
   SortBtnTxt: {fileID: 7206056449295334989}
+  AttackPowerAmountTxt: {fileID: 5593740923362549781}
+  DefenseAmountTxt: {fileID: 1413027110217925779}
 --- !u!1 &6885175925510113217
 GameObject:
   m_ObjectHideFlags: 0
