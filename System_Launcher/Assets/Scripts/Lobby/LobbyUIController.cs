@@ -1,12 +1,42 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 로비 UI를 제어하는 컨트롤러 클래스
 public class LobbyUIController : MonoBehaviour
 {
+    public TextMeshProUGUI CurrChapterNameTxt;
+    public RawImage CurrChapterBg;
+
     // 초기화 메서드
     public void Init()
     {
         UIManager.Instance.EnableStatsUI(true);
+        SetCurrChapter();
+
+    }
+    public void SetCurrChapter()
+    {
+        var userPlayData = UserDataManager.Instance.GetUserData<UserPlayData>();
+        if (userPlayData == null)
+        {
+            Logger.LogError("UserPlayData does not exist.");
+            return;
+        }
+
+        var currChapterData = DataTableManager.Instance.GetChapterData(userPlayData.SelectedChapter);
+        if (currChapterData == null)
+        {
+            Logger.LogError("CurrChapterData does not exist.");
+            return;
+        }
+
+        CurrChapterNameTxt.text = currChapterData.ChapterName;
+        var bgTexture = Resources.Load($"ChapterBG/Background_{userPlayData.SelectedChapter.ToString("D3")}") as Texture2D;
+        if (bgTexture != null)
+        {
+            CurrChapterBg.texture = bgTexture;
+        }
     }
 
     // 매 프레임마다 호출되는 업데이트 메서드

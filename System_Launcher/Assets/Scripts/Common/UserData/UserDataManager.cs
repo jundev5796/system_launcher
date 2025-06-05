@@ -1,85 +1,99 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´Â ½Ì±ÛÅæ ¸Å´ÏÀú Å¬·¡½º
+// ì‚¬ìš©ì ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ëŠ” ì‹±ê¸€í†¤ ë§¤ë‹ˆì € í´ë˜ìŠ¤
 public class UserDataManager : SingletonBehaviour<UserDataManager>
 {
-    // ÀúÀåµÈ µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏ´ÂÁö ¿©ºÎ
+    // ì €ì¥ëœ ë°ì´í„°ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•˜ëŠ” í”„ë¡œí¼í‹°
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool ExistsSavedData { get; private set; }
-    // ¸ğµç »ç¿ëÀÚ µ¥ÀÌÅÍ ÀÎ½ºÅÏ½º¸¦ °ü¸®ÇÏ´Â ÄÁÅ×ÀÌ³Ê
+    // ëª¨ë“  ì‚¬ìš©ì ë°ì´í„° ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê´€ë¦¬í•˜ëŠ” ë¦¬ìŠ¤íŠ¸
+    //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
     public List<IUserData> UserDataList { get; private set; } = new List<IUserData>();
 
-    // ÃÊ±âÈ­ ÇÔ¼ö
+    // ì´ˆê¸°í™” ë©”ì„œë“œ ì˜¤ë²„ë¼ì´ë“œ
     protected override void Init()
     {
-        base.Init(); // ºÎ¸ğ Å¬·¡½º ÃÊ±âÈ­ È£Ãâ
+        // ë¶€ëª¨ í´ë˜ìŠ¤ì˜ ì´ˆê¸°í™” ë©”ì„œë“œ í˜¸ì¶œ
+        base.Init();
 
-        // ¸ğµç »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ UserDataList¿¡ Ãß°¡
+        // ì‚¬ìš©ì ì„¤ì • ë°ì´í„°ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
+        //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ UserDataListï¿½ï¿½ ï¿½ß°ï¿½
         UserDataList.Add(new UserSettingsData());
+        // ì‚¬ìš©ì ì¬í™” ë°ì´í„°ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
         UserDataList.Add(new UserGoodsData());
+        // ì‚¬ìš©ì ì¸ë²¤í† ë¦¬ ë°ì´í„°ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
         UserDataList.Add(new UserInventoryData());
+        // ì‚¬ìš©ì í”Œë ˆì´ ë°ì´í„°ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
+        UserDataList.Add(new UserPlayData());
     }
 
-    // ¸ğµç »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ ±âº»°ªÀ¸·Î ¼³Á¤
+    // ëª¨ë“  ì‚¬ìš©ì ë°ì´í„°ë¥¼ ê¸°ë³¸ê°’ìœ¼ë¡œ ì„¤ì •í•˜ëŠ” ë©”ì„œë“œ
     public void SetDefaultUserData()
     {
-        // ¸®½ºÆ®ÀÇ ¸ğµç µ¥ÀÌÅÍ¿¡ ´ëÇØ ¹İº¹
+        // ì‚¬ìš©ì ë°ì´í„° ë¦¬ìŠ¤íŠ¸ ê°œìˆ˜ë§Œí¼ ë°˜ë³µ
         for (int i = 0; i < UserDataList.Count; i++)
         {
-            UserDataList[i].SetDefaultData(); // °¢ µ¥ÀÌÅÍ¸¦ ±âº»°ªÀ¸·Î ÃÊ±âÈ­
+            // ê° ì‚¬ìš©ì ë°ì´í„°ì˜ ê¸°ë³¸ê°’ ì„¤ì •
+            UserDataList[i].SetDefaultData();
         }
     }
 
-    // »ç¿ëÀÚ µ¥ÀÌÅÍ ·Îµå
+    // ì €ì¥ëœ ì‚¬ìš©ì ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ë©”ì„œë“œ
     public void LoadUserData()
     {
-        // PlayerPrefs¿¡¼­ ÀúÀåµÈ µ¥ÀÌÅÍ Á¸Àç ¿©ºÎ È®ÀÎ
+        // PlayerPrefsì—ì„œ ì €ì¥ëœ ë°ì´í„° ì¡´ì¬ ì—¬ë¶€ í™•ì¸
         ExistsSavedData = PlayerPrefs.GetInt("ExistsSavedData") == 1 ? true : false;
 
-        // ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ÀÖ´Â °æ¿ì¿¡¸¸ ·Îµå
+        // ì €ì¥ëœ ë°ì´í„°ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
         if (ExistsSavedData)
         {
-            // ¸®½ºÆ®ÀÇ ¸ğµç µ¥ÀÌÅÍ¸¦ ·Îµå
+            // ì‚¬ìš©ì ë°ì´í„° ë¦¬ìŠ¤íŠ¸ ê°œìˆ˜ë§Œí¼ ë°˜ë³µ
             for (int i = 0; i < UserDataList.Count; i++)
             {
-                UserDataList[i].LoadData(); // °¢ µ¥ÀÌÅÍ ·Îµå ½ÇÇà
+                // ê° ì‚¬ìš©ì ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
+                UserDataList[i].LoadData();
             }
         }
     }
 
-    // »ç¿ëÀÚ µ¥ÀÌÅÍ ÀúÀå
+    // ì‚¬ìš©ì ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë©”ì„œë“œ
     public void SaveUserData()
     {
-        bool hasSaveError = false; // ÀúÀå ¿À·ù ¹ß»ı ¿©ºÎ ÃßÀû
+        // ì €ì¥ ì˜¤ë¥˜ ë°œìƒ ì—¬ë¶€ë¥¼ í™•ì¸í•˜ëŠ” ë³€ìˆ˜
+        bool hasSaveError = false;
 
-        // ¸®½ºÆ®ÀÇ ¸ğµç µ¥ÀÌÅÍ¸¦ ÀúÀå ½Ãµµ
+        // ì‚¬ìš©ì ë°ì´í„° ë¦¬ìŠ¤íŠ¸ ê°œìˆ˜ë§Œí¼ ë°˜ë³µ
         for (int i = 0; i < UserDataList.Count; i++)
         {
-            bool isSaveSuccess = UserDataList[i].SaveData(); // °¢ µ¥ÀÌÅÍ ÀúÀå ½ÇÇà
-            if (!isSaveSuccess) // ÀúÀå ½ÇÆĞ ½Ã
+            // ê° ì‚¬ìš©ì ë°ì´í„° ì €ì¥ ë° ì„±ê³µ ì—¬ë¶€ í™•ì¸
+            bool isSaveSuccess = UserDataList[i].SaveData();
+            // ì €ì¥ì— ì‹¤íŒ¨í•œ ê²½ìš°
+            if (!isSaveSuccess)
             {
-                hasSaveError = true; // ¿À·ù ÇÃ·¡±× ¼³Á¤
+                // ì˜¤ë¥˜ í”Œë˜ê·¸ ì„¤ì •
+                hasSaveError = true;
             }
         }
 
-        // ¸ğµç µ¥ÀÌÅÍ°¡ ¼º°øÀûÀ¸·Î ÀúÀåµÈ °æ¿ì
+        // ì €ì¥ ì˜¤ë¥˜ê°€ ì—†ëŠ” ê²½ìš°
         if (!hasSaveError)
         {
-            ExistsSavedData = true; // ÀúÀå µ¥ÀÌÅÍ Á¸Àç ÇÃ·¡±× ¼³Á¤
-            PlayerPrefs.SetInt("ExistsSavedData", 1); // PlayerPrefs¿¡ ÀúÀå
-            PlayerPrefs.Save(); // º¯°æ»çÇ×À» µğ½ºÅ©¿¡ ÀúÀå
+            // ì €ì¥ëœ ë°ì´í„° ì¡´ì¬ í”Œë˜ê·¸ ì„¤ì •
+            ExistsSavedData = true;
+            // PlayerPrefsì— ì €ì¥ëœ ë°ì´í„° ì¡´ì¬ ì—¬ë¶€ ì €ì¥
+            PlayerPrefs.SetInt("ExistsSavedData", 1);
+            // PlayerPrefs ì €ì¥ ì‹¤í–‰
+            PlayerPrefs.Save();
         }
     }
 
-    // Á¦³×¸¯ Å¸ÀÔ T·Î Æ¯Á¤ »ç¿ëÀÚ µ¥ÀÌÅÍ¸¦ Á¶È¸ÇÏ´Â ¸Ş¼­µå
+    // ì œë„¤ë¦­ì„ ì‚¬ìš©í•˜ì—¬ íŠ¹ì • íƒ€ì…ì˜ ì‚¬ìš©ì ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë©”ì„œë“œ
     public T GetUserData<T>() where T : class, IUserData
     {
-        // UserDataList¿¡¼­ T Å¸ÀÔ¿¡ ÇØ´çÇÏ´Â Ã¹ ¹øÂ° °´Ã¼¸¦ ¹İÈ¯
+        // LINQë¥¼ ì‚¬ìš©í•˜ì—¬ í•´ë‹¹ íƒ€ì…ì˜ ì²« ë²ˆì§¸ ë°ì´í„° ë°˜í™˜
         return UserDataList.OfType<T>().FirstOrDefault();
     }
-
-
-
 }
