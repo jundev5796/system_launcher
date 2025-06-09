@@ -1,10 +1,19 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : SingletonBehaviour<UIManager> // 싱글톤 패턴을 상속받는 UI 관리자 클래스
 {
     public Transform UICanvasTrs; // UI 캔버스 Transform
     public Transform ClosedUITrs; // 닫힌 UI를 보관할 Transform
+
+
+
+    public Image m_Fade;
+
+
 
     private BaseUI m_FrontUI; // 현재 가장 앞에 있는 UI
     private Dictionary<System.Type, GameObject> m_OpenUIPool = new Dictionary<System.Type, GameObject>(); // 열린 UI들을 저장하는 딕셔너리
@@ -12,7 +21,7 @@ public class UIManager : SingletonBehaviour<UIManager> // 싱글톤 패턴을 상속받는
 
 
     // 재화 UI 컴포넌트
-    private GoodsUI m_StatsUI;
+    private GoodsUI m_GoodsUI;
 
     // 초기화 메서드
     protected override void Init()
@@ -20,10 +29,12 @@ public class UIManager : SingletonBehaviour<UIManager> // 싱글톤 패턴을 상속받는
         // 부모 클래스의 Init 호출
         base.Init();
 
+        m_Fade.transform.localScale = Vector3.zero;
+
         // 씬에서 GoodsUI 컴포넌트 찾기
-        m_StatsUI = FindObjectOfType<GoodsUI>();
+        m_GoodsUI = FindObjectOfType<GoodsUI>();
         // GoodsUI를 찾지 못했을 때
-        if (!m_StatsUI)
+        if (!m_GoodsUI)
         {
             // 로그 출력
             Logger.Log("No stats ui component found.");
@@ -141,18 +152,50 @@ public class UIManager : SingletonBehaviour<UIManager> // 싱글톤 패턴을 상속받는
     }
 
     // 재화 UI 활성화/비활성화
-    public void EnableStatsUI(bool value)
+    public void EnableGoodsUI(bool value)
     {
         // 재화 UI 게임오브젝트 활성화 상태 설정
-        m_StatsUI.gameObject.SetActive(value);
+        m_GoodsUI.gameObject.SetActive(value);
 
         // 활성화하는 경우
         if (value)
         {
             // 재화 값들 설정
-            m_StatsUI.SetValues();
+            m_GoodsUI.SetValues();
         }
     }
 
+    public void Fade(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactiveOnFinish, Action onFinish = null)
+    {
+        StartCoroutine(FadeCo(color, startAlpha, endAlpha, duration, startDelay, deactiveOnFinish, onFinish));
+    }
 
+    private IEnumerator FadeCo(Color color, float startAlpha, float endAlpha, float duration, float startDelay, bool deactiveOnFinish, Action onFinish)
+    {
+        yield return new WaitForSeconds(startDelay);
+
+        m_Fade.transform.localScale = Vector3.one;
+        m_Fade.color = new Color(color.r, color.g, color.b, startAlpha);
+
+        var startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < duration)
+        {
+            m_Fade.color = new Color(color.r, color.g, color.b, Mathf.Lerp(startAlpha, endAlpha, (Time.realtimeSinceStartup - startTime) / duration));
+            yield return null;
+        }
+
+        m_Fade.color = new Color(color.r, color.g, color.b, endAlpha);
+
+        if (deactiveOnFinish)
+        {
+            m_Fade.transform.localScale = Vector3.zero;
+        }
+
+        onFinish?.Invoke();
+    }
+
+    public void CancelFade()
+    {
+        m_Fade.transform.localScale = Vector3.zero;
+    }
 }

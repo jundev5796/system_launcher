@@ -475,10 +475,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2654125874697113539, guid: 622ee264620906a4f8cb03ce06680cbe, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4455494172978113554, guid: 622ee264620906a4f8cb03ce06680cbe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -589,10 +585,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455494174624638401, guid: 622ee264620906a4f8cb03ce06680cbe, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7022521556416750747, guid: 622ee264620906a4f8cb03ce06680cbe, type: 3}
-      propertyPath: m_AllowMSAA
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
